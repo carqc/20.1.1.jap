@@ -46,10 +46,31 @@ document.addEventListener("DOMContentLoaded", function(){
             return false;
         }
     
-    }
-    
-    
+    }    
     
     boton.addEventListener('click', show);
+
+    const data = { 
+      username: username, 
+      password: password 
+    };
     
-    });
+    fetch(`http://localhost:${port}/login`, {
+      method: 'POST',
+      headers: { 
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+       })
+      .then(response => response.json())
+      .then(result => {
+          if (result.token) {
+              alert('Login exitoso!');
+              console.log('Token:', result.token);
+              sessionStorage.setItem("sesion", true);
+              window.location.href = "index.html";
+          } else {
+              alert ('Login fallido, datos erróneos');
+          }
+    
+    }); });

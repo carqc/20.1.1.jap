@@ -1,5 +1,5 @@
 // Importamos los models necesarios
-const peopleModel = require("../js/model");
+const peopleModel = require("./model");
 
 const getUsers = async (req, res) => {
   const users = await peopleModel.getUsers();
